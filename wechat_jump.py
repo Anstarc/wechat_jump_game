@@ -11,10 +11,9 @@ import datetime
 
 scale = 0.25
 
-template = cv2.imread('character.png')
+template = cv2.imread('train_data/character.png')
 template = cv2.resize(template, (0, 0), fx=scale, fy=scale)
 template_size = template.shape[:2]
-
 
 def search(img):
     result = cv2.matchTemplate(img, template, cv2.TM_SQDIFF)
@@ -50,7 +49,7 @@ def update_data():
 fig = plt.figure()
 index = 0
 
-# pull_screenshot()
+pull_screenshot()
 img = update_data()
 
 update = True 
