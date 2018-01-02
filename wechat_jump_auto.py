@@ -6,6 +6,7 @@ import math
 from PIL import Image, ImageDraw
 import random
 import json
+from subprocess import call
 
 
 # === 思路 ===
@@ -44,9 +45,8 @@ if not os.path.isdir(screenshot_backup_dir):
 
 
 def pull_screenshot():
-    os.system('adb shell screencap -p /sdcard/1.png')
-    os.system('adb pull /sdcard/1.png .')
-
+    call('adb shell screencap -p /sdcard/1.png',shell=True)
+    call('adb pull /sdcard/1.png .',shell=True)
 
 def backup_screenshot(ts):
     # 为了方便失败的时候 debug
@@ -84,7 +84,7 @@ def jump(distance):
     press_time = int(press_time)
     cmd = 'adb shell input swipe {} {} {} {} {}'.format(swipe_x1, swipe_y1, swipe_x2, swipe_y2, press_time)
     print(cmd)
-    os.system(cmd)
+    call(cmd,shell=True)
 
 
 def find_piece_and_board(im):
